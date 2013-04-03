@@ -7,23 +7,7 @@ namespace GenericCloudStorageClient
 {
     class ProxyGoogleCloudStorage:ICloudRequest
     {
-        GoogleCloudStorage google;
-        string userName = "test";
-        string password = "helloworld";
-
-        public override string Authenticate(string userName, string password)
-        {
-            if (this.userName != userName && this.password != password)
-            {
-                return "No Access";
-            }
-            else 
-            {
-                google = new GoogleCloudStorage();
-                return "Authenticated";
-            }
-
-        }
+        
 
     }
 }
