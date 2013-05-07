@@ -10,7 +10,7 @@ namespace generic_cloud_storage_client
     {
         public string Authenticate(string username, string password)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool CreateFolder(string foldername)
