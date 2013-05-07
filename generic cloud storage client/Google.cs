@@ -22,7 +22,7 @@ namespace generic_cloud_storage_client
         /// <param name="username">Username of string type</param>
         /// <param name="password">Password of string type</param>
         /// <returns>Returns a token of String type</returns>
-        public override String Authenticate(String username, String password) 
+        public String Authenticate(String username, String password) 
         {
             throw new NotImplementedException();
         }
@@ -32,7 +32,7 @@ namespace generic_cloud_storage_client
         /// </summary>
         /// <param name="folderName">Folder name of string type</param>
         /// <returns>Returns true if folder is created, otherwise false</returns>
-        public override Boolean CreateFolder(String folderName) 
+        public  Boolean CreateFolder(String folderName) 
         {
             throw new NotImplementedException();
         }
@@ -42,7 +42,7 @@ namespace generic_cloud_storage_client
         /// </summary>
         /// <param name="folderName">Folder name of String type</param>
         /// <returns>Returns true if folder is deleted, otherwise false </returns>
-        public override Boolean DeleteFolder(String folderName) 
+        public  Boolean DeleteFolder(String folderName) 
         {
             throw new NotImplementedException();
             
@@ -51,7 +51,7 @@ namespace generic_cloud_storage_client
         /// <summary>
         /// List all the folders
         /// </summary>
-        public override void ListFolder() 
+        public  void ListFolder() 
         {
             throw new NotImplementedException();
         }
@@ -61,7 +61,7 @@ namespace generic_cloud_storage_client
         /// </summary>
         /// <param name="filename">File Name of String type</param>
         /// <returns>Returns true if file is successfully uploaded, otherwise false</returns>
-        public override Boolean UploadFile(String fileName) 
+        public  Boolean UploadFile(String fileName) 
         {
             throw new NotImplementedException();
         }
@@ -71,7 +71,7 @@ namespace generic_cloud_storage_client
         /// </summary>
         /// <param name="filename">File Name of String type</param>
         /// <returns>Returns true if file is successfully deleted, otherwise false</returns>
-        public override Boolean DownloadFile(String fileName) 
+        public  Boolean DownloadFile(String fileName) 
         {
             throw new NotImplementedException();
         }
@@ -81,7 +81,7 @@ namespace generic_cloud_storage_client
         /// </summary>
         /// <param name="fileName">File Name of String type</param>
         /// <returns>Returns true if file is successfully deleted, otherwise false</returns>
-        public override Boolean DeleteFile(String fileName) 
+        public  Boolean DeleteFile(String fileName) 
         {
             throw new NotImplementedException();
         }
@@ -89,10 +89,21 @@ namespace generic_cloud_storage_client
         /// <summary>
         /// List all files in a folder
         /// </summary>
-        public override void ListFiles() 
+        public  void ListFiles() 
         {
             throw new NotImplementedException();
         }
 
+
+
+        public void ListFolders()
+        {
+            throw new NotImplementedException();
+        }
+
+        void ICloudRequest.DownloadFile(string filename)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

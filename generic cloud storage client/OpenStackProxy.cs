@@ -66,8 +66,7 @@ namespace generic_cloud_storage_client
                 openstackobject.ListFolders();
                 
             }
-            else
-            {
+           
                
         }
 
