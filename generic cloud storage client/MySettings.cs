@@ -6,8 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
+
 namespace generic_cloud_storage_client
 {
+    /// <summary>
+    /// This class is used to save the default settings for the app by saving the username and password
+    /// Author- Riju Vashisht date - 05/21/2013
+    /// Please do not change it unless you know what you are doing.
+    /// </summary>
   public   class MySettings
     {
         public string Username{get; set;}

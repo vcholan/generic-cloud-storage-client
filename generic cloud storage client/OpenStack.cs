@@ -15,19 +15,26 @@ namespace generic_cloud_storage_client
         private MySettings settings;
         private Dictionary<string, string> headers;
         private Dictionary<string, string> query;
+        private static bool isSaved=false;
     
        public  OpenStack(String user,String pass){
         this.username=user;
         this.password = pass;
-        settings = new MySettings();
-        settings.Username = user;
-        settings.Password = new Encrypt().Encrypting(pass);
-        settings.Save();
+        if (!isSaved)
+        {
+            settings = new MySettings();
+            settings.Username = user;
+            settings.Password = new Encrypt().Encrypting(pass);
+            settings.Save();
+            isSaved = true;
+        }
+       
         
         }
         public string Authenticate()
         {
             settings = MySettings.Load();//geting password and username from my settings file
+            
             if (!(this.username == settings.Username && new Encrypt().Encrypting(this.password) == settings.Password))
             {
                 
@@ -39,10 +46,10 @@ namespace generic_cloud_storage_client
                 SwiftClient SC = new SwiftClient();
                 headers = new Dictionary<string, string>();
                 query = new Dictionary<string, string>();
-              //  SC.GetAuth("localhost","jdoe","a86850",headers,query,false);
+              //  SC.GetAuth("localhost","jdoe","a86850",headers,query,false);//requires host....
                 Console.Write("Áccess granted");
-                settings.Save();
-                token = "Sucess";
+               // settings.Save();
+                token = "true";
                 return token;
             }
 
