@@ -3,49 +3,139 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenStack.Swift;
 
 namespace generic_cloud_storage_client
 {
-    class OpenStack : ICloudRequest
-    {
-        public string Authenticate(string username, string password)
+    class OpenStack:ICloudRequest{
+        private string  username;
+        private string password;
+        private string token;
+        public OpenStack openstackobject;
+        private MySettings settings;
+        private Dictionary<string, string> headers;
+        private Dictionary<string, string> query;
+    
+       public  OpenStack(String user,String pass){
+        this.username=user;
+        this.password = pass;
+        settings = new MySettings();
+        settings.Username = user;
+        settings.Password = new Encrypt().Encrypting(pass);
+        settings.Save();
+        
+        }
+        public string Authenticate()
         {
-            
+            settings = MySettings.Load();//geting password and username from my settings file
+            if (!(this.username == settings.Username && new Encrypt().Encrypting(this.password) == settings.Password))
+            {
+                
+                return "Please check your username and password";
+            }
+            else
+            {
+               
+                SwiftClient SC = new SwiftClient();
+                headers = new Dictionary<string, string>();
+                query = new Dictionary<string, string>();
+              //  SC.GetAuth("localhost","jdoe","a86850",headers,query,false);
+                Console.Write("Áccess granted");
+                settings.Save();
+                token = "Sucess";
+                return token;
+            }
+
         }
 
         public bool CreateFolder(string foldername)
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.CreateFolder(foldername);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public bool DeleteFolder(string foldername)
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.DeleteFolder(foldername); ;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void ListFolders()
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.ListFolders();
+                
+            }
+           
+               
         }
 
         public bool UploadFile(string filename)
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.UploadFile(filename);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void DownloadFile(string filename)
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.DownloadFile(filename);
+               
+            }
+            else
+            {
+               
+            }
         }
 
         public bool DeleteFile(string filename)
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.DeleteFile(filename);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void ListFiles()
         {
-            throw new NotImplementedException();
+            if (this.openstackobject != null)
+            {
+                openstackobject.ListFiles();
+
+            }
+            else
+            {
+                
+            }
         }
     }
 }

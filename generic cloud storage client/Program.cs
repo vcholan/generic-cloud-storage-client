@@ -10,6 +10,10 @@ namespace generic_cloud_storage_client
     {
         static void Main(string[] args)
         {
+            OpenStack o = new OpenStack("hello","e4rr43w");
+           string token=o.Authenticate();
+           Console.WriteLine(token);
+           Console.Read();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace generic_cloud_storage_client
         /// Authenticate user with username(String) and password(String)  
         /// </summary>
         /// <returns>returns a token which is  String type</returns>
-        String Authenticate(String username, String password);
+        String Authenticate();
 
         /// <summary>
         /// Create Folder  foldername(String) if the space is available.  

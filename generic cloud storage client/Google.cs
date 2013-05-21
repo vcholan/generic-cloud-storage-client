@@ -22,7 +22,7 @@ namespace generic_cloud_storage_client
         /// <param name="username">Username of string type</param>
         /// <param name="password">Password of string type</param>
         /// <returns>Returns a token of String type</returns>
-        public String Authenticate(String username, String password) 
+        public String Authenticate() 
         {
             throw new NotImplementedException();
         }
