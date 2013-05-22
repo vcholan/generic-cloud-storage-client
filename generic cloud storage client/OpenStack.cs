@@ -8,24 +8,24 @@ using OpenStack.Swift;
 namespace generic_cloud_storage_client
 {
     class OpenStack:ICloudRequest{
-        private string  username;
-        private string password;
-        private string token;
-        public OpenStack openstackobject;
-        private MySettings settings;
-        private Dictionary<string, string> headers;
-        private Dictionary<string, string> query;
+        private string  _Username;
+        private string _Password;
+        private string _Token;
+        public OpenStack _Openstackobject;
+        private MySettings _Settings;
+        private Dictionary<string, string> _Headers;
+        private Dictionary<string, string> _Query;
         private static bool isSaved=false;
     
        public  OpenStack(String user,String pass){
-        this.username=user;
-        this.password = pass;
+        this._Username=user;
+        this._Password = pass;
         if (!isSaved)
         {
-            settings = new MySettings();
-            settings.Username = user;
-            settings.Password = new Encrypt().Encrypting(pass);
-            settings.Save();
+            _Settings = new MySettings();
+            _Settings.Username = user;
+            _Settings.Password = new Encrypt().Encrypting(pass);
+            _Settings.Save();
             isSaved = true;
         }
        
@@ -33,9 +33,9 @@ namespace generic_cloud_storage_client
         }
         public string Authenticate()
         {
-            settings = MySettings.Load();//geting password and username from my settings file
+            _Settings = MySettings.Load();//geting password and username from my settings file
             
-            if (!(this.username == settings.Username && new Encrypt().Encrypting(this.password) == settings.Password))
+            if (!(this._Username == _Settings.Username && new Encrypt().Encrypting(this._Password) == _Settings.Password))
             {
                 
                 return "Please check your username and password";
@@ -44,22 +44,22 @@ namespace generic_cloud_storage_client
             {
                
                 SwiftClient SC = new SwiftClient();
-                headers = new Dictionary<string, string>();
-                query = new Dictionary<string, string>();
+                _Headers = new Dictionary<string, string>();
+                _Query = new Dictionary<string, string>();
               //  SC.GetAuth("localhost","jdoe","a86850",headers,query,false);//requires host....
                 Console.Write("Áccess granted");
                // settings.Save();
-                token = "true";
-                return token;
+                _Token = "true";
+                return _Token;
             }
 
         }
 
         public bool CreateFolder(string foldername)
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.CreateFolder(foldername);
+                _Openstackobject.CreateFolder(foldername);
                 return true;
             }
             else
@@ -71,9 +71,9 @@ namespace generic_cloud_storage_client
 
         public bool DeleteFolder(string foldername)
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.DeleteFolder(foldername); ;
+                _Openstackobject.DeleteFolder(foldername); ;
                 return true;
             }
             else
@@ -84,9 +84,9 @@ namespace generic_cloud_storage_client
 
         public void ListFolders()
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.ListFolders();
+                _Openstackobject.ListFolders();
                 
             }
            
@@ -95,9 +95,9 @@ namespace generic_cloud_storage_client
 
         public bool UploadFile(string filename)
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.UploadFile(filename);
+                _Openstackobject.UploadFile(filename);
                 return true;
             }
             else
@@ -108,9 +108,9 @@ namespace generic_cloud_storage_client
 
         public void DownloadFile(string filename)
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.DownloadFile(filename);
+                _Openstackobject.DownloadFile(filename);
                
             }
             else
@@ -121,9 +121,9 @@ namespace generic_cloud_storage_client
 
         public bool DeleteFile(string filename)
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.DeleteFile(filename);
+                _Openstackobject.DeleteFile(filename);
                 return true;
             }
             else
@@ -134,9 +134,9 @@ namespace generic_cloud_storage_client
 
         public void ListFiles()
         {
-            if (this.openstackobject != null)
+            if (this._Openstackobject != null)
             {
-                openstackobject.ListFiles();
+                _Openstackobject.ListFiles();
 
             }
             else

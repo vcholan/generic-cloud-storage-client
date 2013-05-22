@@ -12,6 +12,7 @@ namespace generic_cloud_storage_client
         static void Main(string[] args)
         {
             String token;
+            
             OpenStack o = new OpenStack("helo","e4rr4");
            token=o.Authenticate();
            Console.WriteLine(token);

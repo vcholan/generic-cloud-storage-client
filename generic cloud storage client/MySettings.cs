@@ -21,18 +21,18 @@ namespace generic_cloud_storage_client
 
         public void Save()
         {
-          using(Stream stream= File.Create(SettingsFile))//FIle returns stream
+          using(Stream _Stream= File.Create(SettingsFile))//FIle returns stream
 
             {
                 try
                 {
 
-                    XmlSerializer ser = new XmlSerializer(this.GetType());//writes bytes in the file
-                    ser.Serialize(stream, this);
+                    XmlSerializer _Object = new XmlSerializer(this.GetType());//writes bytes in the file
+                    _Object.Serialize(_Stream, this);
                 }
                 catch (InvalidOperationException)
                 {
-                    stream.Close();
+                    _Stream.Close();
 
 
                 }
@@ -47,18 +47,18 @@ namespace generic_cloud_storage_client
         {
             if (!File.Exists(SettingsFile))
                 return DefaultSettings;
-                 using(Stream stream = File.OpenRead(SettingsFile))
+                 using(Stream _Stream = File.OpenRead(SettingsFile))
               
                  {
                      try{
 
-                    XmlSerializer ser=new XmlSerializer(typeof(MySettings));
+                    XmlSerializer _Object=new XmlSerializer(typeof(MySettings));
 
-                     return (MySettings)ser.Deserialize(stream);
+                     return (MySettings)_Object.Deserialize(_Stream);
                  }
                      catch (InvalidOperationException)
                      {
-                         stream.Close();
+                         _Stream.Close();
                          File.Delete(SettingsFile);
                          return DefaultSettings;
                      }
@@ -75,13 +75,13 @@ namespace generic_cloud_storage_client
         {
             get
             {
-                string folder = Environment.GetFolderPath(
+                string _Folder = Environment.GetFolderPath(
                     Environment.SpecialFolder.ApplicationData);
-                folder = Path.Combine(folder,"OpenStack");
-                folder = Path.Combine(folder,"MyApp");
-                if (!Directory.Exists(folder))
-                    Directory.CreateDirectory(folder);
-                return folder;
+                _Folder = Path.Combine(_Folder,"OpenStack");
+                _Folder = Path.Combine(_Folder,"MyApp");
+                if (!Directory.Exists(_Folder))
+                    Directory.CreateDirectory(_Folder);
+                return _Folder;
             }
         }
 
